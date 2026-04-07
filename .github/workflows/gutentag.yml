@@ -1,0 +1,22 @@
+name: Gutentag, World!
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - run: sudo apt-get install -y gcc
+
+      - name: Run
+        run: gcc -o gutentag gutentag.c && ./gutentag
+
+      - name: Verify output
+        run: bash test.sh
